@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+           
+        }
+        #apple {
+            width: 100px;
+            border-radius: 100%;
+         
+        }
+        button {
+            height: 25px;
+            width: 100px;
+            border-radius: 5px;
+            border: none;
+        }
+        button:hover {
+            background-color: #c4c4c4;
+        }
+        button:active {
+            background-color: grey;
+        }
+    </style>
+</head>
+<body>
+    <h1>Click on Fruit</h1>
+    <h2 id="score">0</h2>
+    <img onclick="appendScore()" id="apple" src="apple.png" alt="Fruit"/>
+    <br />
+    <br>
+    <button onclick="clearScore()">Reset</button>
+   
+    <audio id="alertSound" src="eat.mp3" preload="auto"></audio>
+    
+    <script>
+        var score = parseInt(document.getElementById('score').innerText);
+        
+        function appendScore() {
+            score += 1;
+            document.getElementById('score').innerText = score;
+ 
+            if (score % 10 === 0) {
+                document.getElementById('alertSound').play();
+            }
+        }
+
+        function clearScore() {
+            score = 0;
+            document.getElementById('score').innerText = score;
+        }
+    </script>
+</body>
+</html>
