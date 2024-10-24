@@ -1,11 +1,14 @@
+
 body {
-    text-align: center;
+    text-align: center;        
     font-family: Arial;
+           
 }
 
 #apple {
-    width: 100px;
-    border-radius: 100%;
+    width: 150px;
+    border-radius: 50%50%;
+    filter: drop-shadow(5px 5px 10px gray)    
 }
 
 button {
@@ -13,6 +16,7 @@ button {
     width: 100px;
     border-radius: 5px;
     border: none;
+    box-shadow: 2px 2px 4px gray;
 }
 
 button:hover {
@@ -21,4 +25,6 @@ button:hover {
 
 button:active {
     background-color: grey;
-}
+ }
+ 
+        
