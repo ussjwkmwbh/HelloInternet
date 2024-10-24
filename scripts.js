@@ -8,7 +8,9 @@ function appendScore() {
     }
 }
 
+
 function clearScore() {
+    document.getElementById('buttonSound').play();
     score = 0;
     document.getElementById('score').innerText = score;
 }
