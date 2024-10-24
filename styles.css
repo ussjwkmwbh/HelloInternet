@@ -7,17 +7,19 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vh;
 }
 #main{
+    padding: 5px;
     text-align: center;
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+    height: 100vh;
+    width 100vw;
 
 }
 #apple {
-    width: 150px;
+    width: 50vh;
     border-radius: 50%50%;
     filter: drop-shadow(5px 5px 10px gray)    
 }
