@@ -1,11 +1,21 @@
 
 body {
+    display: flex;
     align-items: center;
     text-align: center;        
     font-family: Arial;
            
 }
-
+#main{
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+  padding: 20px;
+  margin: 10px;
+  text-align: center;
+  max-width: 250px;
+  display: inline-block;
+}
 #apple {
     width: 150px;
     border-radius: 50%50%;
