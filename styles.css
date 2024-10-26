@@ -1,6 +1,7 @@
-
 body {      
-    font-family: Arial;     
+    font-family: Arial;
+    margin: 25px;
+    padding: 0;
 }
 #bax{
     display: flex;
@@ -14,19 +15,20 @@ body {
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
-    height: 70vh;
-    width: 100vw;
+    height: 50vh;
+    width: 90vw;
 
 }
 #apple {
-    height: 50vh;
+    margin: 5vh;
+    height: 15vh;
     border-radius: 50%50%;
     filter: drop-shadow(5px 5px 10px gray);    
 }
 
 button {
-    height: 25px;
-    width: 100px;
+    height: 5vh;
+    width: 15vh;
     border-radius: 5px;
     border: none;
     box-shadow: 2px 2px 4px gray;
@@ -37,7 +39,6 @@ button:hover {
 }
 
 button:active {
-    background-color: grey;
- }
+    background-color: gray;
+ }.
  
-        
