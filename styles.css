@@ -14,14 +14,14 @@ body {
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
-    height: 100vh;
+    height: 70vh;
     width: 100vw;
 
 }
 #apple {
-    width: 50vh;
+    height: 50vh;
     border-radius: 50%50%;
-    filter: drop-shadow(5px 5px 10px gray)    
+    filter: drop-shadow(5px 5px 10px gray);    
 }
 
 button {
