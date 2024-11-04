@@ -16,6 +16,7 @@
       }
       #apple,
       #tnt {
+        text-align: center;
         width: 150px;
         border-radius: 50%50%;
         filter: drop-shadow(5px 5px 10px gray);
@@ -59,7 +60,7 @@
         if (Math.random() < 0.2) {
           tnt.style.display = "block";
           apple.style.display = "none";
-          setTimeout(hideTnt, 2000);
+          setTimeout(hideTnt, 1000);
         }
       }
       function hideTnt() {
