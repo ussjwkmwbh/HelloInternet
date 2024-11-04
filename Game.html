@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruit</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #box {
+        text-align: center;
+      }
+      #apple,
+      #tnt {
+        width: 150px;
+        border-radius: 50%50%;
+        filter: drop-shadow(5px 5px 10px gray);
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <h1>Click on Fruit</h1>
+      <h2 id="score">0</h2>
+      <img onclick="appendScore()" id="apple" src="apple.png" alt="Fruit" />
+      <img onclick="endGame()" src="tnt.png" id="tnt" alt="Danger" />
+      <br />
+      <br />
+      <button onclick="clearScore()">Reset</button>
+
+      <audio id="alertSound" src="eat.mp3" preload="auto"></audio>
+      <audio id="buttonSound" src="minecraft_click.mp3" preload="auto"></audio>
+      <audio id="gameOverSound" src="game_over.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+      var apple = document.getElementById("apple");
+      var tnt = document.getElementById("tnt");
+      var gameOver = false;
+      var score = parseInt(document.getElementById("score").innerText);
+      localStorage.setItem("currentScore", score);
+
+      function getHighScore() {
+        let highScore = localStorage.getItem("highScore");
+        return highScore ? parseInt(highScore) : 0;
+      }
+
+      function saveHighScore(newScore) {
+        localStorage.setItem("highScore", newScore);
+      }
+      function showTnt() {
+        if (Math.random() < 0.02) {
+          tnt.style.display = "block";
+          apple.style.display = "none";
+          setTimeout(hideTnt, 2000);
+        }
+      }
+      function hideTnt() {
+        if (!gameOver) {
+          tnt.display.style = "none";
+          apple.display.style = "block";
+        }
+      }
+      function endGame() {
+        gameOver = true;
+        document.getElementById(
+          "score"
+        ).innerText = `Game Over\nScore: ${score}`;
+        document.getElementById("gameOverSound").play();
+      }
+      function appendScore() {
+        if (gameOver) return;
+
+        score += 1;
+        document.getElementById("score").innerText = score;
+        showTnt();
+
+        if (score % 10 === 0) {
+          document.getElementById("alertSound").play();
+          console.log(score);
+        }
+        localStorage.setItem("currentScore", score);
+        const highScore = getHighScore();
+        if (score > highScore) {
+          saveHighScore(score);
+        }
+      }
+
+      function clearScore() {
+        document.getElementById("buttonSound").play();
+        score = 0;
+        document.getElementById("score").innerText = score;
+        apple.style.display = "block";
+        tnt.style.display = "none";
+        gameOver = false
+      }
+      apple.style.display = "block";
+    </script>
+  </body>
+</html>
