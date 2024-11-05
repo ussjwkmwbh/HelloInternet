@@ -109,7 +109,8 @@
         localStorage.setItem("highScore", newScore);
       }
       function showTnt() {
-        if (Math.random() < 0.2) {
+	let prob = Math.floor(Math.random()*(10-1))+1
+        if (prob < 2) {
           tnt.style.display = "block";
           apple.style.display = "none";
           setTimeout(hideTnt, 1000);
