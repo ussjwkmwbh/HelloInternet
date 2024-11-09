@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fruit</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div id="bax">
-        <div id="main">
-            <h1>Click on Fruit</h1>
-            <h2 id="score">0</h2>
-            <img onclick="appendScore()" id="apple" src="apple.png" alt="Fruit"/>
-            <br />
-            <br>
-            <button onclick="clearScore()">Reset</button>
-        </div>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <nav style="text-align: left;">
+      <p style="margin: 0;">Click <a href="game2.html">here</a> to play Game Version</p>
+    </nav>
+    <div id="box">
+      <h1>Click on Fruit</h1>
+      <h2 id="score">0</h2>
+      <img onclick="appendScore()" id="apple" src="apple.png" alt="Fruit" />
+      <br />
+      <br />
+      <button onclick="clearScore()">Reset</button>
+
+      <audio id="alertSound" src="eat.mp3" preload="auto"></audio>
+      <audio id="buttonSound" src="minecraft_click.mp3" preload="auto"></audio>
     </div>
-<br />  
-    <audio id="alertSound" src="eat.mp3" preload="auto"></audio>
-    <audio id="buttonSound" src="minecraft_click.mp3" preload="auto"></audio>
+    <footer>
+    <p>This website uses localStorage</p>
+    <p style="text-align: right; margin-right: 10%;">
+      <p id="highScore"></p><p id="newHighScore"></p>
+    </p>
+    </footer>
     <script src="scripts.js"></script>
-</body>
-</html>
+  </body>
+</html>    
