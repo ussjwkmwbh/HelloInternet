@@ -14,14 +14,13 @@ body {
   border-radius: 10px;
   min-width: fit-content;
   max-width: 13cm;
-  width: 50%;
+  width: 80%;
   height: 100%;
   box-shadow: 2px 2px 1pc gray;
 }
 #apple,
 #tnt {
   width: 150px;
-  border-radius: 50%50%;
   filter: drop-shadow(5px 5px 10px gray);
 }
 
