@@ -43,15 +43,15 @@
       var tnt = document.getElementById("tnt");
       var gameOver = false;
       var score = parseInt(document.getElementById("score").innerText);
-      localStorage.setItem("currentScore", score);
+      localStorage.setItem("current_score", score);
 
       function getHighScore() {
-        let highScore = localStorage.getItem("highScore");
+        let highScore = localStorage.getItem("high_score");
         return highScore ? parseInt(highScore) : 0;
       }
 
       function saveHighScore(newScore) {
-        localStorage.setItem("highScore", newScore);
+        localStorage.setItem("high_score", newScore);
       }
       function showTnt() {
 	let prob = Math.floor(Math.random()*(10-1))+1
@@ -85,7 +85,7 @@
           document.getElementById("alertSound").play();
           console.log(score);
         }
-        localStorage.setItem("currentScore", score);
+        localStorage.setItem("current_score", score);
         const highScore = getHighScore();
         if (score > highScore) {
           saveHighScore(score);
