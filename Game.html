@@ -75,6 +75,10 @@
         document.getElementById("gameOverSound").play();
       }
       function appendScore() {
+	    if (tnt.style.display === "block"){
+			endGame();
+			return;
+		}
         if (gameOver) return;
 
         score += 1;
