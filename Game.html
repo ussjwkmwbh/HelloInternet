@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fruit</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="design.css" />
     <style>
-      body {
+      #container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -24,6 +24,7 @@
     </style>
   </head>
   <body>
+    <div id="container">
     <div id="box">
       <h1>Click on Fruit</h1>
       <h2 id="score">0</h2>
@@ -37,6 +38,11 @@
       <audio id="buttonSound" src="minecraft_click.mp3" preload="auto"></audio>
       <audio id="gameOverSound" src="game_over.mp3" preload="auto"></audio>
     </div>
+    </div>
+    <p style="text-align: right; margin-right: 10%;">
+      <p id="highScore"></p><p id="newHighScore"></p>
+    </p>
+    </footer>
 
     <script>
       var apple = document.getElementById("apple");
@@ -47,20 +53,22 @@
 
       function getHighScore() {
         let highScore = localStorage.getItem("high_score");
+        document.getElementById("highScore").innerText = `HighScore: ${highScore}`;
         return highScore ? parseInt(highScore) : 0;
       }
 
       function saveHighScore(newScore) {
         localStorage.setItem("high_score", newScore);
+        document.getElementById("newHighScore").innerText = "New HighScore!";
       }
-      function showTnt() {
-	let prob = Math.floor(Math.random()*(10-1))+1
+      const showTnt = () => {
+        let prob = Math.floor(Math.random() * (10 - 1)) + 1;
         if (prob < 2) {
           tnt.style.display = "block";
           apple.style.display = "none";
           setTimeout(hideTnt, 1000);
         }
-      }
+      };
       function hideTnt() {
         if (!gameOver) {
           tnt.style.display = "none";
@@ -75,11 +83,11 @@
         document.getElementById("gameOverSound").play();
       }
       function appendScore() {
-	    if (tnt.style.display === "block"){
-			endGame();
-			return;
-		}
         if (gameOver) return;
+        if (tnt.style.display === "block") {
+          endGame();
+          return;
+        }
 
         score += 1;
         document.getElementById("score").innerText = score;
@@ -102,10 +110,11 @@
         document.getElementById("score").innerText = score;
         apple.style.display = "block";
         tnt.style.display = "none";
-        gameOver = false
+        gameOver = false;
       }
-		
-	  // Keyboard Controls
+      apple.style.display = "block";
+
+      // Keyboard Controls
       let wasSpacePressed = false;
       let wasEnterPressed = false;
       document.addEventListener("keydown", function (event) {
@@ -171,9 +180,6 @@
         }
         requestAnimationFrame(control);
       }
-
-		
-      apple.style.display = "block";
     </script>
   </body>
 </html>
