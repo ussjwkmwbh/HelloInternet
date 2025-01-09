@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Aditya Dey">
+    <meta name="description" content="Fruit Clicker Relaxing and chill page game">
+    <link rel="icon" type="image/png" href="yapple.png">
+    <title>Fruit</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #box {
+        text-align: center;
+      }
+      #apple,
+      #tnt {
+        margin: auto;
+        width: 150px;
+        border-radius: 50%50%;
+        filter: drop-shadow(5px 5px 10px gray);
+        display: none;
+      }
+    </style>
+  </head>
+	<body>
+    <nav style="text-align: left;">
+      <p style="margin: 0;">Click <a href="game2.html">here</a> to play Game Version</p>
+    </nav>
+    <div id="box">
+      <h1>Click on Fruit</h1>
+      <h2 id="score">0</h2>
+      <img onclick="appendScore()" id="apple" src="apple.png" alt="Fruit" />
+      <br />
+      <br />
+      <button onclick="clearScore()">Reset</button>
+
+      <audio id="alertSound" src="eat.mp3" preload="auto"></audio>
+      <audio id="buttonSound" src="minecraft_click.mp3" preload="auto"></audio>
+    </div>
+    <footer>
+    <p>This website uses localStorage</p>
+    <kbd></kbd>
+    <p style="text-align: right; margin-right: 10%;">
+      <p id="highScore"></p><p id="newHighScore"></p>
+    </p>
+    </footer>
+	<script src=scripts.js>
+    </script>
+  </body>
+</html>
