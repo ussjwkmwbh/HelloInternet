@@ -34,10 +34,68 @@ function clearScore() {
 }
 
 //Keyboard Controls
+let wasSpacePressed = false
+let wasEnterPressed = false
 document.addEventListener("keydown", function (event) {
-  if (event.code === "Space") {
+  if (event.code === "Space" && !wasSpacePressed) {
     appendScore();
-  } else if (event.code === "Enter") {
+    wasSpacePressed = true
+  }
+  if (event.code === "Enter" && !wasEnterPressed) {
     clearScore();
+    wasEnterPressed = true
   }
 });
+document.addEventListener("keyup", function (event) {
+  if (event.code === "Space") {
+    wasSpacePressed = false
+  } else if (event.code === "Enter") {
+    wasEnterPressed = false
+  }
+});
+
+//Gamepad Controls 💀 [Xbox layout]
+let controllerIndex = null;
+let A_button = null;
+let X_button = null;
+
+window.addEventListener("gamepadconnected", (event) => {
+  controllerIndex = event.gamepad.index;
+  console.log("connected");
+  setTimeout(control, 1500);
+});
+
+window.addEventListener("gamepaddisconnected", (event) => {
+  console.log("disconnected");
+  controllerIndex = null;
+});
+
+function controllerInput() {
+  if (controllerIndex !== null) {
+    const gamepad = navigator.getGamepads()[controllerIndex];
+
+    const buttons = gamepad.buttons;
+    A_button = buttons[0].pressed;
+    X_button = buttons[2].pressed;
+  }
+}
+let wasAButtonPressed = false;
+let wasXButtonPressed = false;
+
+function control() {
+  controllerInput();
+
+  if (A_button && !wasAButtonPressed) {
+    appendScore();
+    wasAButtonPressed = true;
+  } else if (!A_button) {
+    wasAButtonPressed = false;
+  }
+  if (X_button && !wasXButtonPressed) {
+    clearScore();
+    wasXButtonPressed = true;
+  } else if (!X_button) {
+    wasXButtonPressed = false;
+  }
+  requestAnimationFrame(control);
+}

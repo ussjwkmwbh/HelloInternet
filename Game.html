@@ -6,7 +6,7 @@
     <title>Fruit</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
-      body {
+      #container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -18,13 +18,13 @@
       #tnt {
         margin: auto;
         width: 150px;
-        border-radius: 50%50%;
         filter: drop-shadow(5px 5px 10px gray);
         display: none;
       }
     </style>
   </head>
   <body>
+    <div id="container">
     <div id="box">
       <h1>Click on Fruit</h1>
       <h2 id="score">0</h2>
@@ -38,30 +38,37 @@
       <audio id="buttonSound" src="minecraft_click.mp3" preload="auto"></audio>
       <audio id="gameOverSound" src="game_over.mp3" preload="auto"></audio>
     </div>
+    </div>
+    <p style="text-align: right; margin-right: 10%;">
+      <p id="highScore"></p><p id="newHighScore"></p>
+    </p>
+    </footer>
 
     <script>
       var apple = document.getElementById("apple");
       var tnt = document.getElementById("tnt");
       var gameOver = false;
       var score = parseInt(document.getElementById("score").innerText);
-      localStorage.setItem("currentScore", score);
+      localStorage.setItem("current_score", score);
 
       function getHighScore() {
-        let highScore = localStorage.getItem("highScore");
+        let highScore = localStorage.getItem("high_score");
+        document.getElementById("highScore").innerText = `HighScore: ${highScore}`;
         return highScore ? parseInt(highScore) : 0;
       }
 
       function saveHighScore(newScore) {
-        localStorage.setItem("highScore", newScore);
+        localStorage.setItem("high_score", newScore);
+        document.getElementById("newHighScore").innerText = "New HighScore!";
       }
-      function showTnt() {
-	let prob = Math.floor(Math.random()*(10-1))+1
+      const showTnt = () => {
+        let prob = Math.floor(Math.random() * (10 - 1)) + 1;
         if (prob < 2) {
           tnt.style.display = "block";
           apple.style.display = "none";
           setTimeout(hideTnt, 1000);
         }
-      }
+      };
       function hideTnt() {
         if (!gameOver) {
           tnt.style.display = "none";
@@ -77,6 +84,10 @@
       }
       function appendScore() {
         if (gameOver) return;
+        if (tnt.style.display === "block") {
+          endGame();
+          return;
+        }
 
         score += 1;
         document.getElementById("score").innerText = score;
@@ -86,7 +97,7 @@
           document.getElementById("alertSound").play();
           console.log(score);
         }
-        localStorage.setItem("currentScore", score);
+        localStorage.setItem("current_score", score);
         const highScore = getHighScore();
         if (score > highScore) {
           saveHighScore(score);
@@ -99,9 +110,76 @@
         document.getElementById("score").innerText = score;
         apple.style.display = "block";
         tnt.style.display = "none";
-        gameOver = false
+        gameOver = false;
       }
       apple.style.display = "block";
+
+      // Keyboard Controls
+      let wasSpacePressed = false;
+      let wasEnterPressed = false;
+      document.addEventListener("keydown", function (event) {
+        if (event.code === "Space" && !wasSpacePressed) {
+          appendScore();
+          wasSpacePressed = true;
+        }
+        if (event.code === "Enter" && !wasEnterPressed) {
+          clearScore();
+          wasEnterPressed = true;
+        }
+      });
+      document.addEventListener("keyup", function (event) {
+        if (event.code === "Space") {
+          wasSpacePressed = false;
+        } else if (event.code === "Enter") {
+          wasEnterPressed = false;
+        }
+      });
+
+      //Gamepad Controls 💀 [Xbox layout]
+      let controllerIndex = null;
+      let A_button = null;
+      let X_button = null;
+
+      window.addEventListener("gamepadconnected", (event) => {
+        controllerIndex = event.gamepad.index;
+        console.log("connected");
+        setTimeout(control, 1500);
+      });
+
+      window.addEventListener("gamepaddisconnected", (event) => {
+        console.log("disconnected");
+        controllerIndex = null;
+      });
+
+      function controllerInput() {
+        if (controllerIndex !== null) {
+          const gamepad = navigator.getGamepads()[controllerIndex];
+
+          const buttons = gamepad.buttons;
+          A_button = buttons[0].pressed;
+          X_button = buttons[2].pressed;
+        }
+      }
+      let wasAButtonPressed = false;
+      let wasXButtonPressed = false;
+
+      function control() {
+        controllerInput();
+
+        if (A_button && !wasAButtonPressed) {
+          appendScore();
+          wasAButtonPressed = true;
+        } else if (!A_button) {
+          wasAButtonPressed = false;
+        }
+        if (X_button && !wasXButtonPressed) {
+          clearScore();
+          wasXButtonPressed = true;
+        } else if (!X_button) {
+          wasXButtonPressed = false;
+        }
+        requestAnimationFrame(control);
+      }
     </script>
   </body>
 </html>
