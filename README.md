@@ -4,7 +4,7 @@ Rules are simple:
 - click the fruit
 - not the bomb
 
-[website/HelloInternet/game.html](https://ussjwkmwbh.github.io/HelloInternet/game.html)
+[website/HelloInternet/Mgame.html](https://ussjwkmwbh.github.io/HelloInternet/Mgame.html)
 
 ## **How to play this game?**
 It has Two Games:
