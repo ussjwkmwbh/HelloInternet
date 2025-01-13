@@ -29,7 +29,7 @@ It supports Touch/Click, Keyboard and Controller
 Keyboard Controls:
 
 - Press __Spacebar__ to add points
-- Press __Enter/Return_ key to reset current points
+- Press __Enter/Return__ key to reset current points
 
 Controller Controls: (Xbox Layout)
 - Press __A__ (Button[0]) to add Points
