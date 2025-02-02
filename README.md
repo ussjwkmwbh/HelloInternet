@@ -8,8 +8,9 @@ Rules are simple:
 
 ## **How to play this game?**
 It has Two Games:
--normal mode
--challange mode
+
+- normal mode
+- challange mode
 
 You have to click on the Fruit to add the current Score of clicking
 
